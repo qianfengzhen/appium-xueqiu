@@ -7,5 +7,3 @@ Date: 2022/10/3
 Desc：
 '''
 
-if __name__ == '__main__':
-    pass

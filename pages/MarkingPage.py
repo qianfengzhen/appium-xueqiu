@@ -10,7 +10,7 @@ from driver.AndroidClient import AndroidClient
 from pages.MainPage import MainPage
 
 
-class MarkingPage:
+class MarkingPage(object):
 
     def getszdata(self, name):
         change_price = AndroidClient.driver.\
