@@ -6,24 +6,21 @@ Version: V1.0.0
 Date: 2022/10/4 
 Desc：
 '''
-import time
+from selenium.webdriver.common.by import By
 
 from driver.AndroidClient import AndroidClient
+from pages.BasePage import BasePage
 
 
-class SelectedPage(object):
+class SelectedPage(BasePage):
     def addDefault(self):
         return self
 
-    def gotoMarking(self):
-        AndroidClient.driver.find_element_by_xpath("//*[@text='市场']")
-        time.sleep(5)
-        AndroidClient.driver.find_element_by_xpath("//*[@text='市场']").click()
-        return
-
     def getPriceByName(self, name) -> float:
-        price = AndroidClient.driver.find_element_by_xpath("//*[contains(@resource-id,'stockName') and @text='"+name+"']"+
-            "/../../../..//*[contains(@resource-id, 'currentPrice')]").text
+        # price = self.driver.find_element_by_xpath("//*[contains(@resource-id,'stockName') and @text='"+name+"']"+
+        #     "/../../../..//*[contains(@resource-id, 'currentPrice')]").text
+        priceLocator=(By.XPATH,"//*[contains(@resource-id,'stockName') and @text='%s']/../../../..//*[contains(@resource-id, 'currentPrice')]" %name)
+        price = self.find(priceLocator).text
         return float(price)
 
 

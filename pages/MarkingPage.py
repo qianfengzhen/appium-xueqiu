@@ -7,13 +7,10 @@ Date: 2022/10/5
 Desc：
 '''
 from driver.AndroidClient import AndroidClient
-from pages.MainPage import MainPage
+from pages.BasePage import BasePage
 
 
-class MarkingPage(object):
-
+class MarkingPage(BasePage):
     def getszdata(self, name):
-        change_price = AndroidClient.driver.\
-            find_element_by_xpath("//*[contains(@resource-id, 'index_name') and @text='"+name+"')]"
-            +"/..//*[contains(@resource-id, 'index_price')]").text
+        change_price = self.driver.find_element_by_xpath("//*[contains(@resource-id, 'index_name') and @text='"+name+"')]/..//*[contains(@resource-id, 'index_price')]").text
         return change_price
