@@ -6,6 +6,8 @@ Version: V1.0.0
 Date: 2022/10/6 
 Desc：
 '''
+import time
+
 from selenium.webdriver.common.by import By
 
 from pages.BasePage import BasePage
@@ -33,3 +35,18 @@ class SearchPage(BasePage):
         id = self.find(follow_button).get_attribute("resourceId")
         print(id)
         return "followed_btn" in id
+
+    def searchByUser(self, key):
+        locator_user = (By.XPATH, "//*[contains(@resource-id,'title_text') and @text = '用户']")
+        self.find(self._locator_edit).send_keys(key)
+        self.driver.keyevent(66)
+        time.sleep(3)
+        self.find(locator_user).click()
+        return self
+
+    def isFollowed(self, key):
+        follow_button = (By.XPATH, "//*[contains(@resource-id, 'user_name') and @text = '%s']/../..//*[contains(@resource-id, 'follow')]" %key)
+        id = self.find(follow_button).get_attribute("resourceId")
+        return "followed_btn" in id
+
+
