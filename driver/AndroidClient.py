@@ -37,8 +37,8 @@ class AndroidClient(object):
             "deviceName": "meitu",
             "appActivity": ".view.WelcomeActivityAlias",
             "appPackage": "com.xueqiu.android",
-            "unicodeKeyboard": "true",
-            "resetKeyboard": "true",
+           # "unicodeKeyboard": "true",
+            #"resetKeyboard": "false",
             "noReset": "true"
         }
         cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
