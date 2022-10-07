@@ -23,8 +23,15 @@ class SearchPage(BasePage):
         return self
 
     def addToSelected(self, key):
-        self.find(key).click()
+        follow_button = (By.XPATH, "//*[contains(@resource-id, 'stockCode') and @text = '%s']/../../..//*[contains(@resource-id, 'follow_btn')]" % key)
+        self.find(follow_button).click()
         return self
+
+    def removeFromSelected(self, key):
+        followed_button = (By.XPATH, "//*[contains(@resource-id, 'stockCode') and @text = '%s']/../../..//*[contains(@resource-id, 'followed_btn')]" % key)
+        self.find(followed_button).click()
+        return self
+
 
     def isInSelected(self, key):
         # 先定位元素
@@ -35,6 +42,9 @@ class SearchPage(BasePage):
         id = self.find(follow_button).get_attribute("resourceId")
         print(id)
         return "followed_btn" in id
+
+    def cancel(self):
+        self.findByText("取消").click()
 
     def searchByUser(self, key):
         locator_user = (By.XPATH, "//*[contains(@resource-id,'title_text') and @text = '用户']")

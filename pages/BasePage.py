@@ -21,4 +21,5 @@ class BasePage(object):
        return self.driver.find_element(*kv)
 
     def findByText(self, text) -> WebElement:
-        return self.find(By.XPATH, "//*[@text='%s']" %text)
+        return self.find((By.XPATH, "//*[@text='%s']" %text))
+

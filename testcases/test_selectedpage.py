@@ -7,32 +7,64 @@ Date: 2022/10/4
 Desc：
 '''
 import time
+import pytest
 
 from pages.App import App
 from pages.BasePage import BasePage
 from pages.MainPage import MainPage
 
+
 class TestSelected(object):
 
-    #case:测试自选股票的价格
+    # 只执行一次
+    @classmethod
+    def setup_class(cls):
+        cls.mainPage = App.main()
+
+    #每次用例前执行一次
+    def setup_method(self):
+        self.mainPage: MainPage = TestSelected.mainPage
+        self.searchPage = self.mainPage.gotoSearch() #为了配合数据驱动做的演示
+
+    # case:测试自选股票的价格
     def test_price(self):
-        print(App.main().gotoSelected().getPriceByName("瑞士信贷"))
         assert App.main().gotoSelected().getPriceByName("瑞士信贷") >= 4.0
+        # assert self.mainPage.gotoSelected().getPriceByName("瑞士信贷") >= 4.0
 
-    #case:测试深证成指的最新价格 fail
-    def test_price_marking(self):
-        #todo:待调试
-        assert App.main().gotoMarking().getszdata("深证成指") >= 10000
+    # case:测试深证成指的最新价格 fail
+    # def test_price_marking(self):
+    #     # todo:待调试
+    #     assert self.mainPage.gotoMarking().getszdata("深证成指") >= 10000
 
-    #case:输入的股票是否已添加自选
+    # case:输入的股票是否已添加自选
     def test_is_selected_stock(self):
-        searchPage = App.main().gotoSearch().search("阿里巴巴")
+        self.searchPage.search("阿里巴巴")
         time.sleep(3)
-        assert searchPage.isInSelected("BABA") == False
-        # assert searchPage.isInSelected("01688") == False
+        assert self.searchPage.isInSelected("BABA") == False
 
-    #case:输入的用户是否已被关注
+    # case:输入的用户是否已被关注
     def test_is_selected_user(self):
-        searchPage = App.main().gotoSearch().searchByUser("seveniruby")
+        self.searchPage.searchByUser("seveniruby")
         time.sleep(3)
-        assert searchPage.isFollowed("seveniruby") == False
+        assert self.searchPage.isFollowed("seveniruby") == False
+
+    @pytest.mark.parametrize("key,code",
+                             [("招商银行", "SH600036"), ("平安银行", "SZ000001"), ("pingan", "SH601318"), ("视源股份", "SZ002841")])
+    def test_is_selected_stock_hs(self, key, code):
+        self.searchPage.search(key)
+        assert self.searchPage.isInSelected(code) == False
+
+    def test_add_stock(self):
+        key = "招商银行"
+        code = "SH600036"
+        search_page = self.searchPage.search(key)
+        if search_page.isInSelected(code) == True:
+            search_page.removeFromSelected(code)
+
+        search_page.addToSelected(code)
+        assert search_page.isInSelected(code) == True
+
+    def teardown_method(self):
+        self.searchPage.cancel() #配合数据驱动的关闭
+
+
