@@ -10,7 +10,7 @@ import time
 
 from selenium.webdriver.common.by import By
 
-from pages.BasePage import BasePage
+from pages.basePage import BasePage
 
 
 class SearchPage(BasePage):

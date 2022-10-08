@@ -10,8 +10,7 @@ import time
 import pytest
 
 from pages.App import App
-from pages.BasePage import BasePage
-from pages.MainPage import MainPage
+# from pages.mainPage import MainPage
 
 
 class TestSelected(object):
@@ -21,10 +20,10 @@ class TestSelected(object):
     def setup_class(cls):
         cls.mainPage = App.main()
 
-    #每次用例前执行一次
+    # 每次用例前执行一次
     def setup_method(self):
-        self.mainPage: MainPage = TestSelected.mainPage
-        self.searchPage = self.mainPage.gotoSearch() #为了配合数据驱动做的演示
+        # self.mainPage: MainPage = TestSelected.mainPage
+        self.searchPage = self.mainPage.gotoSearch()  # 为了配合数据驱动做的演示
 
     # case:测试自选股票的价格
     def test_price(self):
@@ -65,6 +64,4 @@ class TestSelected(object):
         assert search_page.isInSelected(code) == True
 
     def teardown_method(self):
-        self.searchPage.cancel() #配合数据驱动的关闭
-
-
+        self.searchPage.cancel()  # 配合数据驱动的关闭

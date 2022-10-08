@@ -7,7 +7,7 @@ Date: 2022/10/6
 Desc：
 '''
 from driver.AndroidClient import AndroidClient
-from pages.MainPage import MainPage
+from pages.mainPage import MainPage
 
 
 class App(object):
