@@ -63,6 +63,8 @@ class LoginPage(BasePage):
         return ProfilePage()
 
     def getErrorMsg(self):
+        # msg = self.laodSteps("../data/LoginPage.yaml", "getErrorMsg")
         msg = self.find(self._error_msg).text
-        self.findByText("确定").click()
+        self.laodSteps("../data/LoginPage.yaml", "getErrorMsg")
+        # self.findByText("确定").click()
         return msg

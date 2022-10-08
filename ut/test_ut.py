@@ -36,7 +36,7 @@ class TestYaml(object):
             print(action)
             if action == "click":
                 print("click")
-            elif action == "sendkeys":
+            elif action == "send_keys":
                 print("send_keys(step['text'])")
             else:
                 print("unknown commod %s" % step)
