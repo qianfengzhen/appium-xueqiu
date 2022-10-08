@@ -20,6 +20,8 @@ class MainPage(BasePage):
     # 完成driver初始化
     # 完成页面点击
     # 完成页面选择
+    _profile_button = (By.XPATH, "//*[contains(@resource-id,'tab_name') and @text='我的']")
+    _search_button = (By.ID, "com.xueqiu.android:id/tv_search")
 
     # 行情-自选-页面
     def gotoSelected(self):
@@ -46,12 +48,11 @@ class MainPage(BasePage):
 
     # 首页-搜索框与搜索页面
     def gotoSearch(self):
-        search_button = (By.ID, "com.xueqiu.android:id/tv_search")
-        self.find(search_button).click()
+        self.find(self._search_button).click()
         return SearchPage()
 
     # 我的-页面
     def gotoProfile(self):
-        profile_button = (By.XPATH, "//*[contains(@resource-id,'tab_name') and @text='我的']")
-        self.find(profile_button).click()
+        # profile_button = (By.XPATH, "//*[contains(@resource-id,'tab_name') and @text='我的']")
+        self.find(self._profile_button).click()
         return ProfilePage()
