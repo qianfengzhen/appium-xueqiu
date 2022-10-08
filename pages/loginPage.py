@@ -8,8 +8,7 @@ Desc：
 '''
 from selenium.webdriver.common.by import By
 
-from pages.basePage import BasePage
-from pages.profilePage import ProfilePage
+from pages.BasePage import BasePage
 
 
 class LoginPage(BasePage):
@@ -34,11 +33,17 @@ class LoginPage(BasePage):
     def loginByMSG(self, photo, code):
         return self
 
+    # def loginByPassword(self, var1=1, var2=2):
+    #     self.laodSteps("../data/LoginPage.yaml", "loginByPassword")
+    #     return self
+
     def loginByPassword(self, account, password):
-        self.find(self._login_user).send_keys(account)
-        self.find(self._login_password).send_keys(password)
-        self.find(self._login_button).click()
+        # self.find(self._login_user).send_keys(account)
+        # self.find(self._login_password).send_keys(password)
+        # self.find(self._login_button).click()
+        self.laodSteps("../data/LoginPage.yaml", "loginByPassword", account=account, password=password)
         return self
+
 
     def loginSuccessByPassword(self, account, password):
         return self
@@ -50,9 +55,10 @@ class LoginPage(BasePage):
         return self
 
     def back(self):
+        from pages.ProfilePage import ProfilePage
         # todo:
         # 显示等待的逻辑：等待2秒,直到某个元素出现
-        #WebDriverWait(self.driver, 2).until(expected_conditions.presence_of_all_elements_located(self._close_locator))
+        # WebDriverWait(self.driver, 2).until(expected_conditions.presence_of_all_elements_located(self._close_locator))
         self.find(self._close_locator).click()
         return ProfilePage()
 

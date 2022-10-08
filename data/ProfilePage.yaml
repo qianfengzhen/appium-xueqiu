@@ -1,0 +1,4 @@
+gotoLogin:
+  - by: xpath
+    locator: //*[@text='登录雪球']
+    action: click

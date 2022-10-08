@@ -1,0 +1,14 @@
+loginByPassword:
+  - locator: login_account
+    by: id
+    action: send_keys
+    text: $account
+  - locator: login_password
+    by: id
+    action: send_keys
+    text: $password
+  - locator: button_next
+    by: id
+    action: click
+
+

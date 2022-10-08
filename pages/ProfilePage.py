@@ -7,12 +7,10 @@ Date: 2022/10/7
 Desc：
 '''
 
-from pages.basePage import BasePage
-# from pages.mainPage import MainPage
+from pages.BasePage import BasePage
 from pages.loginPage import LoginPage
-
 
 class ProfilePage(BasePage):
     def gotoLogin(self):
-        self.findByText("登录雪球").click()
+        self.laodSteps("../data/ProfilePage.yaml", "gotoLogin")
         return LoginPage()

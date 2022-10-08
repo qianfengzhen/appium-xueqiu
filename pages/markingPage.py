@@ -7,7 +7,7 @@ Date: 2022/10/5
 Desc：
 '''
 from driver.AndroidClient import AndroidClient
-from pages.basePage import BasePage
+from pages.BasePage import BasePage
 
 
 class MarkingPage(BasePage):

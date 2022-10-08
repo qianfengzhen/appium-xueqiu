@@ -9,11 +9,10 @@ Desc：
 
 from selenium.webdriver.common.by import By
 
-from pages.basePage import BasePage
+from pages.BasePage import BasePage
 from pages.markingPage import MarkingPage
-from pages.profilePage import ProfilePage
-from pages.searchPage import SearchPage
-from pages.selectedPage import SelectedPage
+from pages.SearchPage import SearchPage
+from pages.SelectedPage import SelectedPage
 
 
 class MainPage(BasePage):
@@ -53,6 +52,8 @@ class MainPage(BasePage):
 
     # 我的-页面
     def gotoProfile(self):
+        from pages.ProfilePage import ProfilePage
         # profile_button = (By.XPATH, "//*[contains(@resource-id,'tab_name') and @text='我的']")
-        self.find(self._profile_button).click()
+        # self.find(self._profile_button).click()
+        self.laodSteps("../data/MainPage.yaml", "gotoProfile")
         return ProfilePage()

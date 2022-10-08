@@ -9,7 +9,7 @@ Desc：
 from selenium.webdriver.common.by import By
 
 from driver.AndroidClient import AndroidClient
-from pages.basePage import BasePage
+from pages.BasePage import BasePage
 
 
 class SelectedPage(BasePage):
