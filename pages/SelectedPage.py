@@ -8,7 +8,7 @@ Desc：
 '''
 from selenium.webdriver.common.by import By
 
-from driver.AndroidClient import AndroidClient
+from driver.Client import AndroidClient
 from pages.BasePage import BasePage
 
 

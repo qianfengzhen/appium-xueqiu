@@ -6,7 +6,6 @@ Version: V1.0.0
 Date: 2022/10/6 
 Desc：
 '''
-import time
 
 from selenium.webdriver.common.by import By
 

@@ -6,7 +6,7 @@ Version: V1.0.0
 Date: 2022/10/6 
 Desc：
 '''
-from driver.AndroidClient import AndroidClient
+from driver.Client import AndroidClient
 from pages.mainPage import MainPage
 
 

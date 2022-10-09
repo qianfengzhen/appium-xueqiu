@@ -9,7 +9,7 @@ Desc：
 
 import yaml
 
-from driver.AndroidClient import AndroidClient
+from driver.Client import AndroidClient
 
 
 class TestYaml(object):
